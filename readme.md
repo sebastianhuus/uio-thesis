@@ -11,5 +11,13 @@ I tried setting it up and running it locally but document doesn't build.
 
 Feel free to make a pull request so we can put this on Typst Universe🙌
 
+## Template in action
+
+### Front page example
+<img src="thumbnail.png">
+
+### Different color schemes and cover images
+<img src="uio-thesis-colors.jpg">
+
 ## Notes
 - This project was made in Typst 0.12. Doesn't work in the Typst web app on 0.13. 
