@@ -1,4 +1,4 @@
-#import "frontpage.typ": *
+#import "template.typ": *
 
 #let create_cover_2_variants(primary-color: uio-fp-blue, secondary-color: uio-fp-blue, cover_image: "") = {
   create_cover_page(primary-color: primary-color, secondary-color: secondary-color)
