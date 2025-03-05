@@ -1,0 +1,7 @@
+[package]
+name = "UiO Thesis Template"
+version = "0.1.0"
+entrypoint = "main.typ"
+authors = ["Sebastian Huus"]
+license = "MIT"
+description = "Unofficial Typst thesis template for the University of Oslo, with a few creative liberties taken."
