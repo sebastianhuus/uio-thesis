@@ -1,13 +1,3 @@
-/*
-Sources:
-- https://www.uio.no/om/designmanual/profilen-i-bruk/publikasjoner-og-brosjyrer/doktorgrader.html
-- https://www.mn.uio.no/ifi/tjenester/it/hjelp/latex/uiophdthesis-demo.pdf
-
-Credits: 
-Thanks to mrtz-j & co. for the UiT Typst template. I referenced it when figuring out how this whole template file, show.with-statements and all that jazz is supposed to work:
-https://github.com/mrtz-j/typst-thesis-template
-*/
-
 #import "@preview/glossarium:0.5.0": make-glossary, print-glossary, gls, glspl
 
 // color testing. this typ file produces a test file if you preview it

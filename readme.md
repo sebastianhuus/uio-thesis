@@ -21,3 +21,14 @@ Feel free to make a pull request so we can put this on Typst Universe🙌
 
 ## Notes
 - This project was made in Typst 0.12. Doesn't work in the Typst web app on 0.13. 
+
+## Thanksies
+
+I used this as my main reference when composing the thesis and structure:
+- https://www.uio.no/om/designmanual/profilen-i-bruk/publikasjoner-og-brosjyrer/doktorgrader.html
+
+I used Dag Langmyhr's LaTeX templates as the basis for this one. I essentially ported his LaTeX code into Typst. It was a big help
+- https://www.mn.uio.no/ifi/tjenester/it/hjelp/latex/uiophdthesis-demo.pdf
+
+Thanks to mrtz-j & co. for the UiT Typst template. I referenced it when figuring out how to set up a Typst template to begin with. Helped me figure out show.with-statements and how all that jazz is supposed to work together to make an easy to use template:
+https://github.com/mrtz-j/typst-thesis-template
