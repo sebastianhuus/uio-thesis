@@ -1,0 +1,23 @@
+uiophdthesis:
+    type: Reference
+    title: The uiophdthesis document class
+    author: Dag Langmyhr
+    url: https://www.mn.uio.no/ifi/tjenester/it/hjelp/latex/uiophdthesis-demo.pdf
+
+uit:
+    type: Reference
+    title: modern-uit-thesis
+    author: [Moritz Jörg, Ole Tytlandsvik]
+    url: https://github.com/mrtz-j/typst-thesis-template
+
+hayagriva:
+    type: Reference
+    title: The Hayagriva YAML File Format
+    author: Typst
+    url: https://github.com/typst/hayagriva/blob/main/docs/file-format.md
+
+uiothesis:
+    type: Reference
+    title: "Master's and Bachelor's theses, doctor degrees and compendiums"
+    author: University of Oslo
+    url: https://www.uio.no/english/about/designmanual/profile-in-use/publications-and-brochures/doctor-degrees.html
