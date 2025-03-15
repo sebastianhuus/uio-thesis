@@ -399,7 +399,8 @@ Note that this one is just to make the front page. If looking for
 
   if bibliography-file != none {
     pagebreak()
-    bibliography(full: true, bibliography-file)
+    let bib-title = if lang == "en" [Bibliography] else [Bibliografi]
+    bibliography(full: true, bibliography-file, title: bib-title)
   } 
 }
 
