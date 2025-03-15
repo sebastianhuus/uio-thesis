@@ -348,14 +348,15 @@ Note that this one is just to make the front page. If looking for
   context {
     let amt-tables =  counter(figure.where(kind: table)).final().first()
     let amt-figures =  counter(figure.where(kind: image)).final().first()
-    let amt-listings =  counter(figure.where(kind: raw)).final().first()
+    let amt-listings =  counter(figure.where(kind: image)).final().first()
     let sum-figures = amt-figures + amt-tables
     
     if (sum-figures > 0 and sum-figures <= 5) {
       // combined list of tables and figures
       // only if total length is less than 5
+      let outline-title = if lang == "en" [List of Tables and Figures] else [Tabeller og figurer]
       outline(
-        title: [List of Tables and Figures],
+        title: outline-title,
         target: figure
       )
     } else {
@@ -379,9 +380,10 @@ Note that this one is just to make the front page. If looking for
       if (amt-listings > 0) {
         // list of figures
         // list of tables
+        let listing-title = if lang == "en" [List of Listings] else [Utlistinger]
         outline(
-          title: [List of Listings],
-          target: figure.where(kind: raw)
+          title: listing-title,
+          target: figure.where(kind: code)
         )
       }
     }
