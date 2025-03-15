@@ -241,10 +241,9 @@ Note that this one is just to make the front page. If looking for
   body,
 ) = {
 
-  if lang == "no" {
-    set text(lang: "nb")
-  }
-  
+  let text-lang = if lang == "no" {"nb"} else {"en"}
+  set text(lang: text-lang)
+
   // call the function to create cover page
   create_cover_page(
     title: title,
