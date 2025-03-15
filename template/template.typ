@@ -240,6 +240,11 @@ Note that this one is just to make the front page. If looking for
   citation-style: "ieee",
   body,
 ) = {
+
+  if lang == "no" {
+    set text(lang: "nb")
+  }
+  
   // call the function to create cover page
   create_cover_page(
     title: title,
