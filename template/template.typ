@@ -277,9 +277,9 @@ Note that this one is just to make the front page. If looking for
 
   ])
   
-  let supervisors-title = "Supervisor"
+  let supervisors-title = if lang == "en" {"Supervisor"} else {"Veileder}"}
   if supervisors.len() >= 2 {
-    supervisors-title = "Supervisors"
+    supervisors-title = if lang == "en" {"Supervisors"} else {"Veiledere"}
   }
 
   let grid-width = 3
