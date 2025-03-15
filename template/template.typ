@@ -338,7 +338,8 @@ Note that this one is just to make the front page. If looking for
   // outline section starts here
   pagebreak(weak: true)
   
-  outline()
+  let outline-title = if lang == "en" {"Table of Contents"} else {"Innholdsfortegnelse"}
+  outline(title: outline-title)
 
   import "@preview/wordometer:0.1.3": word-count, total-words
   show: word-count
