@@ -240,6 +240,10 @@ Note that this one is just to make the front page. If looking for
   citation-style: "ieee",
   body,
 ) = {
+
+  let text-lang = if lang == "no" {"nb"} else {"en"}
+  set text(lang: text-lang)
+
   // call the function to create cover page
   create_cover_page(
     title: title,
@@ -277,9 +281,9 @@ Note that this one is just to make the front page. If looking for
 
   ])
   
-  let supervisors-title = "Supervisor"
+  let supervisors-title = if lang == "en" {"Supervisor"} else {"Veileder}"}
   if supervisors.len() >= 2 {
-    supervisors-title = "Supervisors"
+    supervisors-title = if lang == "en" {"Supervisors"} else {"Veiledere"}
   }
 
   let grid-width = 3
@@ -399,7 +403,8 @@ Note that this one is just to make the front page. If looking for
 
   if bibliography-file != none {
     pagebreak()
-    bibliography(full: true, bibliography-file)
+    let bib-title = if lang == "en" [Bibliography] else [Bibliografi]
+    bibliography(full: true, bibliography-file, title: bib-title)
   } 
 }
 
