@@ -1,6 +1,4 @@
-#import "@preview/glossarium:0.5.0": make-glossary, print-glossary, gls, glspl
-
-// color testing. this typ file produces a test file if you preview it
+// UiO front-page colours (primary / light pairs)
 #let uio-fp-blue = color.rgb(52.5%, 64.2%, 96.9%)
 #let uio-fp-light-blue = color.rgb(90.2%, 92.5%, 100.0%)
 
@@ -19,31 +17,12 @@
 #let uio-fp-light-gray = color.luma(91.2%)
 #let uio-fp-light-grey = color.luma(91.2%)
 
-#square(fill: uio-fp-blue)
-#square(fill: uio-fp-light-blue)
-#square(fill: uio-fp-orange)
-#square(fill: uio-fp-light-orange)
-#square(fill: uio-fp-pink)
-#square(fill: uio-fp-light-pink)
-#square(fill: uio-fp-green)
-#square(fill: uio-fp-light-green)
-#square(fill: uio-fp-gray)
-#square(fill: uio-fp-grey)
-#square(fill: uio-fp-light-gray)
-#square(fill: uio-fp-light-grey)
-
 // here i am initializing all the images for the front page. i intend to make the thesis template work in norwegian/english, so we will need to change pics based on what the user chooses
 #let uio-seal = ""
 
 // note that there is a difference in size between the PNG and SVG file below. My excuse is that "it was like that when I stole it" from Dag's PhD template. 
 #let uio-name-en = "uio-fp-navn-eng.svg"
 #let uio-name-no = "uio-fp-navn-bm.png"
-
-#place(top + left, dx: 2cm, dy: 1mm, image("uio-fp-segl.svg", width: 23.7mm))
-#place(top + left, dx: 6cm, dy: 1mm, image("uio-fp-segl.svg", width: 23.7mm * 2))
-#place(top + left, dx: 2cm, dy: 6cm, image("uio-fp-navn-bm.png", width: 25%))
-#place(top + left, dx: 2cm, dy: 8cm, image("uio-fp-navn-nn.png", width: 25%))
-#place(top + left, dx: 2cm, dy: 10cm, image("uio-fp-navn-eng.svg", width: 25%))
 
 // i define a few easily changeable default variables below in case you don't want to pass in all the parameters.
 #let default-title = "Typst - A LaTeX Alternative for Long Form Writing in Academia?"
@@ -56,7 +35,7 @@
 #let default-thesis-type = "Bachelor's thesis"  // or Master's thesis, Doctor's thesis (Bacheloroppgave, Masteroppgave, Doktoroppgave),
 #let default-lang = "en" // alternatively "no" for Norwegian. I have not added support for any other language.
 #let default-date = "Fall 2024" // or Spring 2024, etc. You can also put in an actual date if you want. 
-#let default-cover-page-font = "New Computer Modern Sans" // I chose this font based on the uiophdthesis. UiO's main fonts is actually licensed and costs money to use. 
+#let default-cover-page-font = ("New Computer Modern Sans", "Helvetica", "Arial", "New Computer Modern") // I chose this font based on the uiophdthesis. UiO's main fonts is actually licensed and costs money to use. 
 #let default-cover-image = "" // optional
 #let default-supervisors = (
     (
@@ -191,15 +170,13 @@ Note that this one is just to make the front page. If looking for
     
               #v(2em)
               
-              #program \ 
-    
-              #if lang == "no" [
-                #credits studiepoeng \ \
-              ] else [
-                #credits credits \ \
-              ]
-              #dept \
-              #faculty
+              #if program != none [#program \ ]
+
+              #if credits != none {
+                if lang == "no" [#credits studiepoeng \ \ ] else [#credits credits \ \ ]
+              }
+              #if dept != none [#dept \ ]
+              #if faculty != none [#faculty]
             ]
           )
     
@@ -281,7 +258,7 @@ Note that this one is just to make the front page. If looking for
 
   ])
   
-  let supervisors-title = if lang == "en" {"Supervisor"} else {"Veileder}"}
+  let supervisors-title = if lang == "en" {"Supervisor"} else {"Veileder"}
   if supervisors.len() >= 2 {
     supervisors-title = if lang == "en" {"Supervisors"} else {"Veiledere"}
   }
@@ -344,7 +321,7 @@ Note that this one is just to make the front page. If looking for
   
   outline()
 
-  import "@preview/wordometer:0.1.3": word-count, total-words
+  import "@preview/wordometer:0.1.5": word-count, total-words
   show: word-count
   [Total words: #total-words]
   
@@ -352,7 +329,7 @@ Note that this one is just to make the front page. If looking for
   context {
     let amt-tables =  counter(figure.where(kind: table)).final().first()
     let amt-figures =  counter(figure.where(kind: image)).final().first()
-    let amt-listings =  counter(figure.where(kind: image)).final().first()
+    let amt-listings =  counter(figure.where(kind: raw)).final().first()
     let sum-figures = amt-figures + amt-tables
     
     if (sum-figures > 0 and sum-figures <= 5) {
@@ -387,7 +364,7 @@ Note that this one is just to make the front page. If looking for
         let listing-title = if lang == "en" [List of Listings] else [Utlistinger]
         outline(
           title: listing-title,
-          target: figure.where(kind: code)
+          target: figure.where(kind: raw)
         )
       }
     }
@@ -408,5 +385,63 @@ Note that this one is just to make the front page. If looking for
   } 
 }
 
-#uiothesisfp("")
 
+// Short-report variant: UiO cover page + body styling + bibliography, none of the thesis
+// front matter (title/supervisor page, abstract, preface, outlines, word count).
+// Set program, credits, dept or faculty to none to leave them off the cover.
+#let uioreport(
+  title: default-title,
+  subtitle: "",
+  author: default-author,
+  program: none,
+  credits: none,
+  dept: none,
+  faculty: none,
+  thesis-type: "Project report",
+  lang: default-lang,
+  primary-color: uio-fp-blue,
+  secondary-color: uio-fp-light-blue,
+  date: default-date,
+  cover-page-font: default-cover-page-font,
+  cover-image: "",
+  cover: true,
+  // an already-built bibliography element, e.g. bibliography("refs.bib"): the path then
+  // resolves relative to your document instead of this template file
+  bib: none,
+  body,
+) = {
+  let text-lang = if lang == "no" {"nb"} else {"en"}
+  set document(title: title, author: author)
+  set text(lang: text-lang)
+
+  if cover {
+    create_cover_page(
+      title: title,
+      subtitle: subtitle,
+      author: author,
+      program: program,
+      credits: credits,
+      dept: dept,
+      faculty: faculty,
+      thesis-type: thesis-type,
+      lang: lang,
+      primary-color: primary-color,
+      secondary-color: secondary-color,
+      date: date,
+      cover-page-font: cover-page-font,
+      cover-image: cover-image,
+    )
+    set page(margin: auto)
+    pagebreak(weak: true)
+  }
+
+  set page(paper: "a4", numbering: "1", margin: auto)
+  counter(page).update(1)
+  set text(font: "Libertinus Serif", size: 11pt)
+  set par(justify: true)
+  set heading(numbering: "1.1")
+
+  body
+
+  bib
+}

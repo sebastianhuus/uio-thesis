@@ -3,7 +3,7 @@
 // Take a look at the file `template.typ` in the file panel
 // to customize this template and discover how it works.
 #show: uiothesisfp.with(
-  bibliography-file: "../bib.yml")
+  bibliography-file: "../bib.yml", // resolved relative to template/template.typ
 )
 
 // We generated the example code below so you can see how
